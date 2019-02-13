@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Three Body</title>
+<link rel="shortcut icon" href="/favicon.ico"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png"/>
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/lib/marked.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js"></script>
+<style>
+*:not(#loading) {
+	box-sizing: border-box;
+}
+html {
+	height: 100%;
+}
+body {
+	height: 100%;
+	margin: 0px;
+	font-size: 1.2rem;
+	font-family: Verdana, "Helvetica Neue", Arial, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+	background-attachment: fixed;
+	background-image: url(/images/bg.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	overscroll-behavior: none;
+}
+a {
+	color: #337ab7;
+	text-decoration: none;
+}
+a:hover,
+a:focus {
+	color: #23527c;
+	text-decoration: underline;
+}
+a:focus {
+	outline: 5px auto -webkit-focus-ring-color;
+	outline-offset: -2px;
+}
+blockquote {
+	padding: 0px 20px;
+	margin: 0 0 20px;
+	border-left: 5px solid #ccc;
+}
+#container {
+	box-shadow: 2px 2px 3px #aaa;
+	padding: 40px;
+	background-color: #eee;
+	margin: 0px auto;
+	width: 100%;
+	min-height: 100%;
+	position: relative;
+}
+#article {
+	margin-bottom: 60px;
+}
+#footer {
+	color: #888;
+	font-size: 0.8rem;
+	position: absolute;
+	bottom: 20px;
+}
+@media screen and (min-width: 767px) {
+	#container {
+		margin: 60px auto;
+		width: 80%;
+	}
+}
+@media screen and (min-width: 1200px) {
+	#container {
+		margin: 60px auto;
+		width: 800px;
+	}
+}
+@media screen and (min-width: 1600px) {
+	#container {
+		margin: 60px auto;
+		width: 50%;
+	}
+}
+#loading {
+	height: 9em;
+	left: 50%;
+	margin: -7.5em;
+	padding: 3em;
+	position: absolute;
+	font-size: 12px;
+	top: 50%;
+	width: 9em;
+	transform: rotateX(45deg) rotateZ(45deg);
+	transform-style: preserve-3d;
+}
+.cube,
+.cube:after,
+.cube:before {
+	content: "";
+	float: left;
+	height: 3em;
+	position: absolute;
+	width: 3em;
+}
+/* Top */
+.cube {
+	background-color: #05afd1;
+	position: relative;
+	transform: translateZ(3em);
+	transform-style: preserve-3d;
+	transition: .25s;
+	box-shadow: 13em 13em 1.5em rgba(0, 0, 0, 0.1);
+	animation: anim 1s infinite;
+}
+.cube:after {
+	background-color: #049dbc;
+	transform: rotateX(-90deg) translateY(3em);
+	transform-origin: 100% 100%;
+}
+.cube:before {
+	background-color: #048ca7;
+	transform: rotateY(90deg) translateX(3em);
+	transform-origin: 100% 0;
+}
+.cube:nth-child(1) {
+	animation-delay: 0.05s;
+}
+.cube:nth-child(2) {
+	animation-delay: 0.1s;
+}
+.cube:nth-child(3) {
+	animation-delay: 0.15s;
+}
+.cube:nth-child(4) {
+	animation-delay: 0.2s;
+}
+.cube:nth-child(5) {
+	animation-delay: 0.25s;
+}
+.cube:nth-child(6) {
+	animation-delay: 0.3s;
+}
+.cube:nth-child(7) {
+	animation-delay: 0.35s;
+}
+.cube:nth-child(8) {
+	animation-delay: 0.4s;
+}
+.cube:nth-child(9) {
+	animation-delay: 0.45s;
+}
+@keyframes anim {
+	50% {
+		transform: translateZ(0.5em);
+	}
+}
+</style>
+</head>
+<body>
+<div id="container">
+	<div id="loading">
+		<div class="cube"></div>
+		<div class="cube"></div>
+		<div class="cube"></div>
+		<div class="cube"></div>
+		<div class="cube"></div>
+		<div class="cube"></div>
+		<div class="cube"></div>
+		<div class="cube"></div>
+		<div class="cube"></div>
+	</div>
+	<div id="article">
+	</div>
+	<span id="footer">
+		https://three-body.org
+	</span>
+</div>
+<script>
+function getUrlParam(name) {
+	//构造一个含有目标参数的正则表达式对象
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+	//匹配目标参数
+	var r = window.location.search.substr(1).match(reg);
+	//返回参数值
+	if (r != null) {
+		return decodeURI(r[2]);
+	}
+	return null;
+}
+function load(file) {
+	$.ajax(file, {
+		type: "get",
+		dataType: "text",
+		cache: false,
+		error: function(xhr, status, error) {
+			console.log("Error");
+			$("#article").html('<h1 style="text-align: center;">获取页面内容失败</h1>');
+		},
+		success: function(data, status, xhr) {
+			$("#article").html(marked(data, {
+				breaks: true,
+				xhtml: true
+			}));
+			pangu.spacingElementById("article");
+			$("a").attr("target", "_blank");
+			$("#loading").hide();
+		}
+	});
+}
+$(window).on("load", function() {
+	var book = getUrlParam("book"),
+		name = getUrlParam("name"),
+		file = (book && name) ? "三体" + book + "/" + name + ".md" : "元数据.md";
+	load(file);
+});
+</script>
+</body>
+</html>
