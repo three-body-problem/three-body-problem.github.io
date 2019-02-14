@@ -178,21 +178,14 @@ blockquote {
 </div>
 <script>
 function getUrlParam(name) {
-	//构造一个含有目标参数的正则表达式对象
 	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-	//匹配目标参数
 	var r = window.location.search.substr(1).match(reg);
-	//返回参数值
-	if (r != null) {
-		return decodeURI(r[2]);
-	}
-	return null;
+	return (r != null) ? decodeURI(r[2]) : null;
 }
 function load(file) {
 	$.ajax(file, {
 		type: "get",
 		dataType: "text",
-		cache: false,
 		error: function(xhr, status, error) {
 			console.log("Error");
 			$("#article").html('<h1 style="text-align: center;">获取页面内容失败</h1>');
