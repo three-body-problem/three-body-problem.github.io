@@ -205,6 +205,12 @@ function load(file) {
 			pangu.spacingElementById("article");
 			$("a").attr("target", "_blank");
 			$("#loading").hide();
+			if (localStorage.getItem(file)) {
+				$("html").scrollTop(document.body.scrollHeight * localStorage.getItem(file));
+			}
+			$(window).on("scroll", function() {
+				localStorage.setItem(file, $("html").scrollTop() / document.body.scrollHeight);
+			});
 		}
 	});
 }
