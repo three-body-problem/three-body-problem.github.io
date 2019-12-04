@@ -185,36 +185,30 @@ function getUrlParam(name) {
 	var r = window.location.search.substr(1).match(reg);
 	return (r != null) ? decodeURI(r[2]) : null;
 }
-function load(file) {
-	$.ajax(file, {
-		type: "get",
-		dataType: "text",
-		error: function(xhr, status, error) {
-			console.log("Error");
-			$("#article").html('<h1 style="text-align: center;">获取页面内容失败</h1>');
-		},
-		success: function(data, status, xhr) {
-			$("#article").html(marked(data, {
+window.addEventListener("DOMContentLoaded", () => {
+	var book = getUrlParam("book"),
+		name = getUrlParam("name"),
+		file = (book && name) ? `三体${book}/${name}.md` : "元数据.md";
+	fetch(file)
+		.then(response => response.text())
+		.then(result => {
+			document.getElementById("article").innerHTML = marked(result, {
 				breaks: true,
-				xhtml: true
-			}));
+				xhtml : true
+			});
 			pangu.spacingElementById("article");
 			$("a").attr("target", "_blank");
 			$("#loading").hide();
 			if (localStorage.getItem(file)) {
 				$("html").scrollTop(document.body.scrollHeight * localStorage.getItem(file));
 			}
-			$(window).on("scroll", function() {
-				localStorage.setItem(file, $("html").scrollTop() / document.body.scrollHeight);
+			window.addEventListener("scroll", () => {
+				localStorage.setItem(file, window.scrollY / document.body.scrollHeight);
 			});
-		}
-	});
-}
-$(window).on("load", function() {
-	var book = getUrlParam("book"),
-		name = getUrlParam("name"),
-		file = (book && name) ? "三体" + book + "/" + name + ".md" : "元数据.md";
-	load(file);
+		}).catch(error => {
+			console.log("Error");
+			document.getElementById("article").innerHTML = '<h1 style="text-align: center;">获取页面内容失败</h1>';
+		});
 });
 </script>
 </body>
