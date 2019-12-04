@@ -17,19 +17,18 @@ html {
 	height: 100%;
 }
 body {
-	height: 100%;
-	margin: 0px;
+	font-family: Verdana, 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft JhengHei', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
 	font-size: 1.2rem;
-	font-family: Verdana, "Helvetica Neue", Arial, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
-	overscroll-behavior: none;
+	height: 100%;
 	line-height: 1.6;
+	margin: 0;
+	overscroll-behavior: none;
 }
 a {
 	color: #337ab7;
 	text-decoration: none;
 }
-a:hover,
-a:focus {
+a:hover, a:focus {
 	color: #23527c;
 	text-decoration: underline;
 }
@@ -38,33 +37,33 @@ a:focus {
 	outline-offset: -2px;
 }
 blockquote {
-	padding: 0px 20px;
-	margin: 0 0 20px;
 	border-left: 5px solid #ccc;
+	margin: 0 0 20px;
+	padding: 0 20px;
 }
 blockquote p {
 	font-family: STKaiti, KaiTi;
 }
 blockquote strong {
-	font-family: Verdana, "Helvetica Neue", Arial, "PingFang SC", "Microsoft JhengHei", "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+	font-family: Verdana, 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft JhengHei', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
 }
 #container {
-	box-shadow: 2px 2px 3px #aaa;
-	padding: 40px;
 	background-color: #eee;
-	margin: 0px auto;
-	width: 100%;
+	box-shadow: 2px 2px 3px #aaa;
+	margin: 0 auto;
 	min-height: 100%;
+	padding: 40px;
 	position: relative;
+	width: 100%;
 }
 #article {
 	margin-bottom: 60px;
 }
 #footer {
-	color: #888;
-	font-size: 0.8rem;
-	position: absolute;
 	bottom: 20px;
+	color: #888;
+	font-size: .8rem;
+	position: absolute;
 }
 @media screen and (min-width: 767px) {
 	#container {
@@ -85,21 +84,19 @@ blockquote strong {
 	}
 }
 #loading {
+	font-size: 12px;
 	height: 9em;
 	left: 50%;
 	margin: -7.5em;
 	padding: 3em;
 	position: absolute;
-	font-size: 12px;
 	top: 50%;
-	width: 9em;
 	transform: rotateX(45deg) rotateZ(45deg);
 	transform-style: preserve-3d;
+	width: 9em;
 }
-.cube,
-.cube:after,
-.cube:before {
-	content: "";
+.cube, .cube:after, .cube:before {
+	content: '';
 	float: left;
 	height: 3em;
 	position: absolute;
@@ -107,13 +104,13 @@ blockquote strong {
 }
 /* Top */
 .cube {
+	animation: anim 1s infinite;
 	background-color: #05afd1;
+	box-shadow: 13em 13em 1.5em rgba(0, 0, 0, .1);
 	position: relative;
 	transform: translateZ(3em);
 	transform-style: preserve-3d;
 	transition: .25s;
-	box-shadow: 13em 13em 1.5em rgba(0, 0, 0, 0.1);
-	animation: anim 1s infinite;
 }
 .cube:after {
 	background-color: #049dbc;
@@ -126,35 +123,35 @@ blockquote strong {
 	transform-origin: 100% 0;
 }
 .cube:nth-child(1) {
-	animation-delay: 0.05s;
+	animation-delay: .05s;
 }
 .cube:nth-child(2) {
-	animation-delay: 0.1s;
+	animation-delay: .1s;
 }
 .cube:nth-child(3) {
-	animation-delay: 0.15s;
+	animation-delay: .15s;
 }
 .cube:nth-child(4) {
-	animation-delay: 0.2s;
+	animation-delay: .2s;
 }
 .cube:nth-child(5) {
-	animation-delay: 0.25s;
+	animation-delay: .25s;
 }
 .cube:nth-child(6) {
-	animation-delay: 0.3s;
+	animation-delay: .3s;
 }
 .cube:nth-child(7) {
-	animation-delay: 0.35s;
+	animation-delay: .35s;
 }
 .cube:nth-child(8) {
-	animation-delay: 0.4s;
+	animation-delay: .4s;
 }
 .cube:nth-child(9) {
-	animation-delay: 0.45s;
+	animation-delay: .45s;
 }
 @keyframes anim {
 	50% {
-		transform: translateZ(0.5em);
+		transform: translateZ(.5em);
 	}
 }
 </style>
