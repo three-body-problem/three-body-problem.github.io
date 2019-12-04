@@ -6,9 +6,9 @@
 <title>Three Body</title>
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
-<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js"></script>
+<base target="_blank">
 <style>
 *:not(#loading) {
 	box-sizing: border-box;
@@ -190,14 +190,12 @@ window.addEventListener("DOMContentLoaded", () => {
 		.then(response => response.text())
 		.then(result => {
 			document.getElementById("article").innerHTML = marked(result, {
-				breaks: true,
-				xhtml : true
+				breaks: true
 			});
 			pangu.spacingElementById("article");
-			$("a").attr("target", "_blank");
-			$("#loading").hide();
+			document.getElementById("loading").style.display = "none";
 			if (localStorage.getItem(file)) {
-				$("html").scrollTop(document.body.scrollHeight * localStorage.getItem(file));
+				document.scrollingElement.scrollTop = document.body.scrollHeight * localStorage.getItem(file);
 			}
 			window.addEventListener("scroll", () => {
 				localStorage.setItem(file, window.scrollY / document.body.scrollHeight);
