@@ -21,18 +21,18 @@ body {
 	overscroll-behavior: none;
 }
 #main {
+	align-items: center;
 	background-image: url(/images/background.jpg);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	min-height: 100%;
 }
-#main img {
-	left: 50%;
-	position: absolute;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	width: 500px;
+#main span {
+	height: 60px;
 }
 @media (max-width: 599px) {
 	#main img {
@@ -47,24 +47,15 @@ body {
 		width: 500px;
 	}
 }
-#main svg {
-	animation: shake 2s ease-in-out infinite;
-	left: 50%;
-	position: absolute;
-	transform: translateX(-50%);
+#svg {
+	animation: shake 1s ease-in-out infinite alternate;
 }
-#main svg path {
+#svg path {
 	fill: white;
 }
 @keyframes shake {
-	0% {
-		bottom: 0px;
-	}
-	50% {
-		bottom: 10px;
-	}
-	100% {
-		bottom: 0px;
+	to {
+		transform: translateY(-10px);
 	}
 }
 
@@ -146,12 +137,15 @@ footer {
 		</div><!--/.nav-collapse -->
 	</div>
 </nav>
-<section id="main">
+<main id="main">
+	<span></span>
 	<img src="/images/threebody.svg">
-	<svg height="32" width="32" viewBox="0 100 320 320" id="svg">
-		<path d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"/>
-	</svg>
-</section>
+	<div id="svg">
+		<svg height="32" width="32" viewBox="0 100 320 320">
+			<path d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"/>
+		</svg>
+	</div>
+</main>
 <section id="showcase">
 	<div class="container">
 		<div class="row">
@@ -184,7 +178,7 @@ footer {
 </section>
 <section class="testimonial">
 	<div class="container">
-		<p>“消灭人类暴政，世界属于三体”</p>
+		<p>「消灭人类暴政，世界属于三体」</p>
 		<p class="customer">——地球三体组织</p>
 	</div>
 </section>
@@ -242,7 +236,7 @@ footer {
 </section>
 <section class="testimonial">
 	<div class="container">
-		<p>“消灭人类暴政，世界属于三体”</p>
+		<p>「消灭人类暴政，世界属于三体」</p>
 		<p class="customer">——地球三体组织</p>
 	</div>
 </section>
@@ -265,7 +259,7 @@ footer {
 					<img src="/images/eto.jpg" class="card-img-top">
 					<div class="card-body">
 						<h3 class="card-title">伊文斯</h3>
-						<p class="card-text">物种共产主义学说创立者。“地球上的所有生命物种，生来平等。”</p>
+						<p class="card-text">物种共产主义学说创立者。「地球上的所有生命物种，生来平等。」</p>
 						<a href="#" class="btn btn-primary mr-2" role="button">Button</a>
 						<a href="#" class="btn btn-secondary" role="button">Button</a>
 					</div>
@@ -322,7 +316,7 @@ footer {
 						</div>
 						<textarea class="form-control" type="text" name="" value="" placeholder="Enter Message" rows="5"></textarea>
 					</div>
-					<button class="btn btn-secondary btn-success">Submit</button>
+					<button class="btn btn-success">Submit</button>
 				</form>
 			</div>
 		</div>
@@ -351,7 +345,7 @@ sr.reveal("#main img", {
 	delay: 1500,
 	origin: "top"
 });
-sr.reveal("#main i", {
+sr.reveal("#svg", {
 	duration: 1000,
 	delay: 2500,
 	origin: "top"
@@ -381,25 +375,25 @@ sr.reveal("#testimonial div", {
 });
 sr.reveal("#info1 .info-left", {
 	duration: 2000,
-	origin: "left",
+	origin: "bottom",
 	distance: "300px",
 	viewFactor: 0.2
 });
 sr.reveal("#info1 .info-right", {
 	duration: 2000,
-	origin: "right",
+	origin: "bottom",
 	distance: "300px",
 	viewFactor: 0.2
 });
 sr.reveal("#info2 .info-left", {
 	duration: 2000,
-	origin: "bottom",
+	origin: "left",
 	distance: "300px",
 	viewFactor: 0.2
 });
 sr.reveal("#info2 .info-right", {
 	duration: 2000,
-	origin: "bottom",
+	origin: "right",
 	distance: "300px",
 	viewFactor: 0.2
 });
