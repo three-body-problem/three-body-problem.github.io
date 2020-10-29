@@ -176,14 +176,10 @@ blockquote strong {
 </div>
 <script src="/js/bubbly-bg.js"></script>
 <script>
-function getUrlParam(name) {
-	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-	var r = window.location.search.substr(1).match(reg);
-	return (r != null) ? decodeURI(r[2]) : null;
-}
 window.addEventListener("DOMContentLoaded", () => {
-	var book = getUrlParam("book"),
-		name = getUrlParam("name"),
+	const param = new URL(location.href).searchParams,
+		book = param.get("book"),
+		name = param.get("name"),
 		file = (book && name) ? `三体${book}/${name}.md` : "元数据.md";
 	fetch(file)
 		.then(response => response.text())
