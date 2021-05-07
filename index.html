@@ -7,9 +7,9 @@
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/scrollreveal@4/dist/scrollreveal.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css">
 <style>
 html {
 	height: 100%;
@@ -126,16 +126,16 @@ footer {
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
 	<div class="container">
 		<a class="navbar-brand" href="#">Three Body</a>
-		<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar">
+		<button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div id="navbar" class="collapse navbar-collapse">
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a class="nav-link" href="#showcase">Home</a></li>
-				<li class="nav-item"><a class="nav-link" href="#info1">About</a></li>
-				<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-				<li class="nav-item"><a class="nav-link" href="/fiction/" target="_blank">Fiction</a></li>
-			</ul>
+			<div class="navbar-nav ms-auto">
+				<a class="nav-link" href="#showcase">Home</a>
+				<a class="nav-link" href="#info1">About</a>
+				<a class="nav-link" href="#contact">Contact</a>
+				<a class="nav-link" href="/fiction/" target="_blank">Fiction</a>
+			</div>
 		</div><!--/.nav-collapse -->
 	</div>
 </nav>
@@ -249,7 +249,7 @@ footer {
 					<div class="card-body">
 						<h3 class="card-title">叶文洁</h3>
 						<p class="card-text">地球三体组织最高统帅。</p>
-						<div class="form-group mb-0">
+						<div class="mb-0">
 							<a href="#" class="btn btn-primary" role="button">关注</a>
 							<a href="#" class="btn btn-secondary" role="button">Button</a>
 						</div>
@@ -262,7 +262,7 @@ footer {
 					<div class="card-body">
 						<h3 class="card-title">伊文斯</h3>
 						<p class="card-text">物种共产主义学说创立者。「地球上的所有生命物种，生来平等。」</p>
-						<div class="form-group mb-0">
+						<div class="mb-0">
 							<a href="#" class="btn btn-primary" role="button">关注</a>
 							<a href="#" class="btn btn-secondary" role="button">Button</a>
 						</div>
@@ -275,7 +275,7 @@ footer {
 					<div class="card-body">
 						<h3 class="card-title">申玉菲</h3>
 						<p class="card-text">...</p>
-						<div class="form-group mb-0">
+						<div class="mb-0">
 							<a href="#" class="btn btn-primary" role="button">关注</a>
 							<a href="#" class="btn btn-secondary" role="button">Button</a>
 						</div>
@@ -288,7 +288,7 @@ footer {
 					<div class="card-body">
 						<h3 class="card-title">潘寒</h3>
 						<p class="card-text">...</p>
-						<div class="form-group mb-0">
+						<div class="mb-0">
 							<a href="#" class="btn btn-primary" role="button">关注</a>
 							<a href="#" class="btn btn-secondary" role="button">Button</a>
 						</div>
@@ -306,22 +306,16 @@ footer {
 			</div>
 			<div class="col-md-5 col-sm-5">
 				<form>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text">Name</span>
-						</div>
+					<div class="input-group mb-3">
+						<span class="input-group-text">Name</span>
 						<input class="form-control" type="text" name="" value="" placeholder="Enter Name">
 					</div>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text">Email</span>
-						</div>
+					<div class="input-group mb-3">
+						<span class="input-group-text">Email</span>
 						<input class="form-control" type="text" name="" value="" placeholder="Enter Email">
 					</div>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text">Message</span>
-						</div>
+					<div class="input-group mb-3">
+						<span class="input-group-text">Message</span>
 						<textarea class="form-control" type="text" name="" value="" placeholder="Enter Message" rows="5"></textarea>
 					</div>
 					<button class="btn btn-success">Submit</button>
