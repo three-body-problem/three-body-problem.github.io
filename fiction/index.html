@@ -49,6 +49,7 @@ blockquote strong {
 #container {
 	background-color: #eee;
 	box-shadow: 2px 2px 3px #aaa;
+	display: flex;
 	margin: 0 auto;
 	min-height: 100%;
 	padding: 40px;
@@ -56,7 +57,7 @@ blockquote strong {
 	width: 100%;
 }
 #article {
-	margin-bottom: 60px;
+	margin-bottom: 50px;
 }
 #footer {
 	bottom: 20px;
@@ -83,90 +84,124 @@ blockquote strong {
 	}
 }
 #loading {
-	font-size: 12px;
-	height: 9em;
-	left: 50%;
-	margin: -7.5em;
-	padding: 3em;
-	position: absolute;
-	top: 50%;
-	transform: rotateX(45deg) rotateZ(45deg);
-	transform-style: preserve-3d;
-	width: 9em;
+	margin: auto;
 }
-.cube, .cube:after, .cube:before {
-	content: '';
-	float: left;
-	height: 3em;
-	position: absolute;
-	width: 3em;
-}
-/* Top */
-.cube {
-	animation: anim 1s infinite;
-	background-color: #05afd1;
-	box-shadow: 13em 13em 1.5em rgba(0, 0, 0, .1);
-	position: relative;
-	transform: translateZ(3em);
-	transform-style: preserve-3d;
-	transition: .25s;
-}
-.cube:after {
-	background-color: #049dbc;
-	transform: rotateX(-90deg) translateY(3em);
-	transform-origin: 100% 100%;
-}
-.cube:before {
-	background-color: #048ca7;
-	transform: rotateY(90deg) translateX(3em);
-	transform-origin: 100% 0;
-}
-.cube:nth-child(1) {
-	animation-delay: .05s;
-}
-.cube:nth-child(2) {
-	animation-delay: .1s;
-}
-.cube:nth-child(3) {
-	animation-delay: .15s;
-}
-.cube:nth-child(4) {
-	animation-delay: .2s;
-}
-.cube:nth-child(5) {
-	animation-delay: .25s;
-}
-.cube:nth-child(6) {
-	animation-delay: .3s;
-}
-.cube:nth-child(7) {
-	animation-delay: .35s;
-}
-.cube:nth-child(8) {
-	animation-delay: .4s;
-}
-.cube:nth-child(9) {
-	animation-delay: .45s;
-}
-@keyframes anim {
-	50% {
-		transform: translateZ(.5em);
+@keyframes spinner-linspin {
+	to {
+		transform: rotate(360deg);
 	}
+}
+@keyframes spinner-easespin {
+	12.5% {
+		transform: rotate(135deg);
+	}
+	25% {
+		transform: rotate(270deg);
+	}
+	37.5% {
+		transform: rotate(405deg);
+	}
+	50% {
+		transform: rotate(540deg);
+	}
+	62.5% {
+		transform: rotate(675deg);
+	}
+	75% {
+		transform: rotate(810deg);
+	}
+	87.5% {
+		transform: rotate(945deg);
+	}
+	to {
+		transform: rotate(1080deg);
+	}
+}
+@keyframes spinner-left-spin {
+	0% {
+		transform: rotate(130deg);
+	}
+	50% {
+		transform: rotate(-5deg);
+	}
+	to {
+		transform: rotate(130deg);
+	}
+}
+@keyframes right-spin {
+	0% {
+		transform: rotate(-130deg);
+	}
+	50% {
+		transform: rotate(5deg);
+	}
+	to {
+		transform: rotate(-130deg);
+	}
+}
+.spinner-container {
+	animation: spinner-linspin 1568.23529647ms linear infinite;
+	height: 6em;
+	pointer-events: none;
+	width: 6em;
+}
+.spinner-rotator {
+	animation: spinner-easespin 5332ms cubic-bezier(0.4, 0.0, 0.2, 1) infinite both;
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}
+.spinner-left, .spinner-right {
+	bottom: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+}
+.spinner-left {
+	left: 0;
+	right: 49%;
+}
+.spinner-left .spinner-circle {
+	animation: spinner-left-spin 1333ms cubic-bezier(0.4, 0.0, 0.2, 1) infinite both;
+	border-right-color: transparent;
+	left: 0;
+	right: -100%;
+}
+.spinner-right {
+	left: 49%;
+	right: 0;
+}
+.spinner-right .spinner-circle {
+	animation: right-spin 1333ms cubic-bezier(0.4, 0.0, 0.2, 1) infinite both;
+	border-left-color: transparent;
+	left: -100%;
+	right: 0;
+}
+.spinner-circle {
+	border-color: #05afd1 #05afd1 transparent;
+	border-radius: 50%;
+	border-style: solid;
+	border-width: .5em;
+	box-sizing: border-box;
+	height: 100%;
+	position: absolute;
+	width: 200%;
 }
 </style>
 </head>
 <body>
 <div id="container">
 	<div id="loading">
-		<div class="cube"></div>
-		<div class="cube"></div>
-		<div class="cube"></div>
-		<div class="cube"></div>
-		<div class="cube"></div>
-		<div class="cube"></div>
-		<div class="cube"></div>
-		<div class="cube"></div>
-		<div class="cube"></div>
+		<div class="spinner-container">
+			<div class="spinner-rotator">
+				<div class="spinner-left">
+					<div class="spinner-circle"></div>
+				</div>
+				<div class="spinner-right">
+					<div class="spinner-circle"></div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div id="article">
 	</div>
@@ -194,7 +229,7 @@ window.addEventListener("DOMContentLoaded", () => {
 			}
 			window.addEventListener("scroll", () => {
 				localStorage.setItem(file, window.scrollY / document.body.scrollHeight);
-			});
+			}, { passive: true });
 		}).catch(error => {
 			console.log("Error");
 			document.getElementById("article").innerHTML = '<h1 style="text-align: center;">获取页面内容失败</h1>';
