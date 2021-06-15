@@ -6,8 +6,9 @@
 <title>Three Body</title>
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
-<script src="https://cdn.jsdelivr.net/npm/marked@1/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@2/marked.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bubbly-bg@1/dist/bubbly-bg.min.js"></script>
 <base target="_blank">
 <style>
 *:not(#loading) {
@@ -209,8 +210,10 @@ blockquote strong {
 		https://three-body.org
 	</span>
 </div>
-<script src="/js/bubbly-bg.js"></script>
 <script>
+bubbly({
+	bubbles: 20
+});
 window.addEventListener("DOMContentLoaded", () => {
 	const param = new URL(location.href).searchParams,
 		book = param.get("book"),
